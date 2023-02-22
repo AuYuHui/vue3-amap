@@ -1,6 +1,6 @@
 /// <reference types="@amap/amap-jsapi-types" />
 declare namespace AMapLoader {
-    interface LoaderOptions {
+    export interface LoaderOptions {
       key: string;
       version: string;
       plugins?: string[];
