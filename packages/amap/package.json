@@ -1,7 +1,8 @@
 {
-  "name": "vue3-amap",
-  "private": true,
+  "name": "@yuhui/vue3-amap",
   "version": "0.0.1",
+  "description": "高德地图 vue3 amap vue amap",
+  "author": "AuYuHui <2419068625@qq.com> (https://github.com/AuYuHui)",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "license": "MIT",
@@ -14,7 +15,6 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "description": "高德地图 vue3 amap vue amap",
   "keywords": [
     "高德地图",
     "vue3-amap",
