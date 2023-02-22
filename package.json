@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "update-version": "bumpp package.json packages/*/package.json",
+    "publish-pkg": "pnpm -r publish --access public",
     "cz": "czg"
   },
   "homepage": "https://github.com/AuYuHui/vue3-amap",
