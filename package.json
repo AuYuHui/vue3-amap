@@ -1,6 +1,6 @@
 {
   "preview": true,
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "高德地图 vue3 amap vue amap",
   "author": {
     "name": "AuYuHui",
@@ -10,6 +10,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "update-version": "bumpp package.json packages/*/package.json",
     "cz": "czg"
   },
   "homepage": "https://github.com/AuYuHui/vue3-amap",
@@ -26,6 +27,7 @@
   "license": "MIT",
   "devDependencies": {
     "@antfu/eslint-config": "^0.35.2",
+    "bumpp": "^8.2.1",
     "cz-git": "^1.5.0",
     "czg": "^1.5.0",
     "eslint": "^8.34.0"
