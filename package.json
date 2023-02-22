@@ -1,0 +1,38 @@
+{
+  "preview": true,
+  "version": "1.0.0",
+  "description": "高德地图 vue3 amap vue amap",
+  "author": {
+    "name": "AuYuHui",
+    "email": "2419068625@qq.com",
+    "url": "https://github.com/AuYuHui"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "cz": "czg"
+  },
+  "homepage": "https://github.com/AuYuHui/vue3-amap",
+  "keywords": [
+    "高德地图",
+    "vue3-amap",
+    "vue3-map",
+    "vue amap",
+    "vue3 amap"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.35.2",
+    "cz-git": "^1.5.0",
+    "czg": "^1.5.0",
+    "eslint": "^8.34.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  }
+}
