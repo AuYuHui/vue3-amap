@@ -1,2 +1,2 @@
-import './hooks'
 export * from './components/amap'
+export * from './hooks'

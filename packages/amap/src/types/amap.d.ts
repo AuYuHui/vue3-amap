@@ -1,19 +1,19 @@
 /// <reference types="@amap/amap-jsapi-types" />
+export interface LoaderOptions {
+  key: string;
+  version: string;
+  plugins?: string[];
+  AMapUI?: {
+    version?: string;
+    plugins?: string[];
+  };
+  Loca?: {
+    version?: string;
+  };
+  serviceHost?: string,
+  securityJsCode?: string
+}
 declare namespace AMapLoader {
-    export interface LoaderOptions {
-      key: string;
-      version: string;
-      plugins?: string[];
-      AMapUI?: {
-        version?: string;
-        plugins?: string[];
-      };
-      Loca?: {
-        version?: string;
-      };
-      serviceHost?: string,
-      securityJsCode?: string
-    }
     /**
      * @param key '申请好的Web端开发者Key，首次调用 load 时必填'
      * @param version '指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15'

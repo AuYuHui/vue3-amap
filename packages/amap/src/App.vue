@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import ElAmap from './components/amap'
 </script>
 
 <template>
-  <ElAmap />
+  <div />
 </template>
 
 <style scoped>
