@@ -2,11 +2,16 @@
   "name": "vue3-amap",
   "private": true,
   "version": "0.0.1",
-  "type": "module",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "license": "MIT",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "description": "高德地图 vue3 amap vue amap",
