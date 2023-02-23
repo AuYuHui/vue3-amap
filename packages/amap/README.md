@@ -1,18 +1,57 @@
-# Vue 3 + TypeScript + Vite
+<h1 align="center">@dabu/vue3-amap</h1>
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 文档
+    @dabu/vue3-amap  基于高德地图2.0 API 封装设计的 Vue3 组件/hooks 库，开箱即用。
 
-## Recommended IDE Setup
+如果您觉得还不错，点亮 🌟star🌟 是支持更新的最大动力 ✌🏻
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Type Support For `.vue` Imports in TS
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+##  安装
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+推荐使用 pnpm 安装
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+```shell
+# with npm
+npm install @dabu/vue3-amap --save
+
+# or with yarn
+yarn add @dabu/vue3-amap
+
+# or with pnpm
+pnpm add @dabu/vue3-amap
+```
+
+
+## 快速上手
+```ts
+import { useAmap } from '@dabu/vue3-amap'
+import '@dabu/vue3-amap/dist/style.css'
+
+const { initAMapApiLoader } = useAmap()
+async function setupApp() {
+  await initAMapApiLoader({
+    key: '', // 高德地图 Key
+    version: '2.0'
+  })
+  const app = createApp(App)
+  app.mount('#app')
+}
+setupApp()
+```
+
+## 组件
+
+```vue
+<el-amap :zoom="zoom" :center="center"></el-amap>
+```
+
+
+## hooks 方法
+
+| 方法名称          | 描述         |
+| ----------------- | ------------ |
+| initAMapApiLoader | 初始化方法   |
+| getInstance       | 返回实例对象 |
+|                   |              |
+
