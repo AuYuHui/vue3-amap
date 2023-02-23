@@ -1,6 +1,6 @@
 {
   "name": "@dabu/vue3-amap",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "高德地图 vue3 amap vue amap",
   "author": "AuYuHui <2419068625@qq.com> (https://github.com/AuYuHui)",
   "main": "dist/index.js",
