@@ -1,3 +1,3 @@
-export interface ElAmapProps extends Partial<AMap.MapOptions> {
-
+export interface AmapProvide {
+  getInstance: () => AMap.Map | null
 }

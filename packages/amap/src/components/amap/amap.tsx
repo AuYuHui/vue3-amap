@@ -1,12 +1,12 @@
 import type { PropType } from 'vue'
 import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
-
 import style from './amap.module.css'
-import type { ElAmapProps } from './types'
 import { initProps } from '@/utils'
-export default defineComponent<ElAmapProps>({
+import { ElAmap_KEY, useChildren } from '@/hooks'
+
+export default defineComponent<Partial<AMap.MapOptions>>({
   name: 'ElAmap',
-  props: initProps<ElAmapProps>({
+  props: initProps<Partial<AMap.MapOptions>>({
     center: {
       type: Array as unknown as PropType<[number, number]>,
       default: () => [114.05834626586915, 22.546789983033168],
@@ -21,6 +21,7 @@ export default defineComponent<ElAmapProps>({
     },
   }),
   setup(props, { slots, expose }) {
+    const { linkChildren } = useChildren(ElAmap_KEY)
     const domRef = ref<HTMLDivElement>()
     let _Map: AMap.Map | null = null
     function init() {
@@ -35,10 +36,14 @@ export default defineComponent<ElAmapProps>({
     function destroy() {
       _Map?.destroy()
     }
+
+    function getInstance(): AMap.Map | null {
+      return _Map
+    }
     // 导出方法
     expose({
-      _Map,
       destroy,
+      getInstance,
     })
     //  挂载后
     onMounted(() => {
@@ -48,6 +53,10 @@ export default defineComponent<ElAmapProps>({
     onBeforeUnmount(() => {
       destroy()
       _Map = null
+    })
+
+    linkChildren({
+      getInstance,
     })
     return () => (
         <div class={style['el-amap-container']}>

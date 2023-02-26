@@ -26,5 +26,3 @@ declare namespace AMapLoader {
     function load(options: LoaderOptions): Promise<void>;
   }
   
-  export = AMapLoader;
-  
