@@ -49,9 +49,38 @@ setupApp()
 
 ## hooks 方法
 
-| 方法名称          | 描述         |
-| ----------------- | ------------ |
-| initAMapApiLoader | 初始化方法   |
-| getInstance       | 返回实例对象 |
-|                   |              |
+| 方法名称          | 描述                                                  |
+| ----------------- | ----------------------------------------------------- |
+| initAMapApiLoader | 初始化方法                                            |
+| getInstance       | 返回实例对象                                          |
+| useParent         | 在子组件中使用 `useParent` 获取父组件提供的数据和方法 |
+
+## 自定义组件
+
+示例代码，可以在   [仓库地址](https://github.com/AuYuHui/vue3-amap) 上看我写的 demo 
+
+```vue
+<script lang="ts">
+import { defineComponent, nextTick } from 'vue'
+
+import { ElAmap_KEY, useParent } from '@dabu/vue3-amap'
+export default defineComponent({
+  name: 'CustomAmap',
+  setup() {
+    const { parent } = useParent(ElAmap_KEY)
+    if (!parent)
+      return
+    nextTick(() => {
+      const map = parent.getInstance()
+      const marker = new AMap.Marker({
+        position: map?.getCenter(),
+      })
+      map?.add(marker)
+    })
+    return {}
+  },
+})
+</script>
+
+```
 
