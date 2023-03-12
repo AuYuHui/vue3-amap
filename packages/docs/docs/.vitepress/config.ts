@@ -1,6 +1,10 @@
 import path from 'path'
+import { withPwa } from '@vite-pwa/vitepress'
 import { defineConfig } from 'vitepress'
-export default defineConfig({
+import { resolve } from 'pathe'
+import fg from 'fast-glob'
+export default withPwa(defineConfig({
+  base: '/',
   title: 'Vue3-Amap',
   description: 'Vue3-Amap',
 
@@ -35,7 +39,6 @@ export default defineConfig({
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2023 AuYuHui',
     },
-
   },
   vite: {
     resolve: {
@@ -44,7 +47,28 @@ export default defineConfig({
       },
     },
   },
-})
+  pwa: {
+    base: '/',
+    scope: '/',
+    outDir: '.vitepress/dist',
+    registerType: 'autoUpdate',
+    includeAssets: fg.sync('**/*.{png,svg,ico,txt}', {
+      cwd: resolve(__dirname, 'public'),
+    }),
+    manifest: {
+      name: 'vue3-amap',
+      short_name: 'vue3-amap',
+      theme_color: '#ffffff',
+    },
+    workbox: {
+      globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
+    },
+    devOptions: {
+      enabled: true,
+      navigateFallback: '/',
+    },
+  },
+}))
 
 function nav() {
   return [
