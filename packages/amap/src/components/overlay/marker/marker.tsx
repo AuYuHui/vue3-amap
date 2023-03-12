@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent, nextTick } from 'vue'
 import { useParent } from '@/hooks'
 import { initProps } from '@/utils'
 export default defineComponent<Partial<AMap.MarkerOptions>>({
@@ -56,10 +56,14 @@ export default defineComponent<Partial<AMap.MarkerOptions>>({
     const { parent } = useParent()
     if (!parent)
       return
-    const map = parent.getInstance()
-    const marker = new AMap.Marker({
-      ...props,
+    nextTick(() => {
+      const map = parent.getInstance()
+      const marker = new AMap.Marker({
+        ...props,
+      })
+      map?.add(marker)
     })
-    map?.add(marker)
+
+    return () => (<div></div>)
   },
 })

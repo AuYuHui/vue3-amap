@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { MarkerOptions } from '@dabu/vue3-amap'
-import { ElAmap, ElMarker } from '@dabu/vue3-amap'
 import { ref } from 'vue'
+import ElAmap from './components/amap/amap'
+import type { MarkerOptions } from './components/overlay/marker'
+import ElMarker from './components/overlay/marker/marker'
 const markers = ref<Array<MarkerOptions>>([
   {
     position: [114.021888, 22.576431],
@@ -22,17 +23,17 @@ const markers = ref<Array<MarkerOptions>>([
     id: 2,
   },
 ])
-
+const zoom = ref(10)
 const AmapRef = ref<InstanceType<typeof ElAmap> | null>(null)
 
 // onMounted(() => {
-//   console.log(AmapRef.value)
+//   console.log(AmapRef.value?.$.props)
 // })
 </script>
 
 <template>
-  <ElAmap ref="AmapRef" :zoom-enable="false">
-    <ElMarker v-for="marker in markers" :key="marker.id" :label="marker.label" :position="marker.position" :draggable="true" cursor="move" />
+  <ElAmap ref="AmapRef" v-model:zoom="zoom" :drag-enable="false">
+    <ElMarker v-for="marker in markers" :key="marker.id" :label="marker.label" :position="marker.position" />
   </ElAmap>
 </template>
 

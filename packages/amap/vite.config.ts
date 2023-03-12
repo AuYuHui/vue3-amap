@@ -32,7 +32,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(process.cwd(), 'src/index.ts'),
-      name: 'vue3-amap',
+      name: '@dabu/vue3-amap',
       fileName: 'index',
       formats: ['es', 'cjs'],
     },

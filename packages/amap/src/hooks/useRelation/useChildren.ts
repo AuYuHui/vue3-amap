@@ -11,7 +11,6 @@ import {
   provide,
   reactive,
 } from 'vue'
-
 export function flattenVNodes(children: VNodeNormalizedChildren) {
   const result: VNode[] = []
 
