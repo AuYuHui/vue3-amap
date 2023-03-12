@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { MarkerOptions } from '@dabu/vue3-amap'
-import { ElAmap, ElMarker } from '@dabu/vue3-amap'
 import { ref } from 'vue'
+import type { MarkerOptions } from '@dabu/vue3-amap'
+import { ElAmap, ElMarker, useAmap } from '@dabu/vue3-amap'
+const { initAMapApiLoader } = useAmap()
 const markers = ref<Array<MarkerOptions>>([
   {
     position: [114.021888, 22.576431],
@@ -24,7 +25,10 @@ const markers = ref<Array<MarkerOptions>>([
 ])
 
 const AmapRef = ref<InstanceType<typeof ElAmap> | null>(null)
-
+await initAMapApiLoader({
+  key: 'dbf3f6a5dafa9bd013fab9098a5df12f',
+  version: '2.0',
+})
 // onMounted(() => {
 //   console.log(AmapRef.value)
 // })
