@@ -12,6 +12,7 @@ export interface LoaderOptions {
   };
   serviceHost?: string,
   securityJsCode?: string
+  [key:string]: any
 }
 declare namespace AMapLoader {
     /**

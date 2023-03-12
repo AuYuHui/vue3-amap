@@ -7,25 +7,25 @@ export function useAmap() {
   * @param config 配置项
   * @returns
   */
-  function initAMapApiLoader(config: LoaderOptions) {
-    return new Promise<typeof AMap>((resolve, reject) => {
-      load(config).then((Amap) => {
-        if (config.securityJsCode) {
-          window._AMapSecurityConfig = {
-            securityJsCode: config.securityJsCode,
-          }
+  async function initAMapApiLoader(config: LoaderOptions): Promise<typeof AMap | null> {
+    try {
+      const Amap = await load(config)
+      if (config.securityJsCode) {
+        window._AMapSecurityConfig = {
+          securityJsCode: config.securityJsCode,
         }
-        if (config.serviceHost) {
-          window._AMapSecurityConfig = {
-            serviceHost: config.serviceHost,
-          }
+      }
+      if (config.serviceHost) {
+        window._AMapSecurityConfig = {
+          serviceHost: config.serviceHost,
         }
-        initAmap = Amap
-        resolve(Amap)
-      }).catch((err) => {
-        reject(err)
-      })
-    })
+      }
+      initAmap = Amap
+    }
+    catch (error) {
+      console.warn('地图初始化失败', error)
+    }
+    return initAmap
   }
   /**
    *

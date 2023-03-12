@@ -1,5 +1,5 @@
-import { defineComponent, nextTick } from 'vue'
-import { ElAmap_KEY, useParent } from '@/hooks'
+import { defineComponent } from 'vue'
+import { useParent } from '@/hooks'
 import { initProps } from '@/utils'
 export default defineComponent<Partial<AMap.MarkerOptions>>({
   name: 'ElMarker',
@@ -53,18 +53,13 @@ export default defineComponent<Partial<AMap.MarkerOptions>>({
     extData: null,
   }),
   setup(props, { slots, expose }) {
-    const { parent } = useParent(ElAmap_KEY)
+    const { parent } = useParent()
     if (!parent)
       return
-    nextTick(() => {
-      const map = parent.getInstance()
-      const marker = new AMap.Marker({
-        ...props,
-      })
-      map?.add(marker)
+    const map = parent.getInstance()
+    const marker = new AMap.Marker({
+      ...props,
     })
-    return () => (
-        <div> </div>
-    )
+    map?.add(marker)
   },
 })

@@ -2,6 +2,7 @@ import type {
   ComponentInternalInstance,
   ComponentPublicInstance,
   InjectionKey,
+
 } from 'vue'
 import {
   computed,
@@ -11,14 +12,18 @@ import {
   ref,
 } from 'vue'
 
-type ParentProvide<T> = T & {
+import type { AmapProvide } from '@/components/amap/types'
+// Map_key
+export const ElAmap_KEY: InjectionKey<AmapProvide> = Symbol('el-amap')
+
+type ParentProvide = AmapProvide & {
   link(child: ComponentInternalInstance): void
   unlink(child: ComponentInternalInstance): void
   children: ComponentPublicInstance[]
   internalChildren: ComponentInternalInstance[]
 }
 
-export function useParent<T>(key: InjectionKey<ParentProvide<T>>) {
+export function useParent(key: InjectionKey<ParentProvide> = ElAmap_KEY) {
   const parent = inject(key, null)
 
   if (parent) {

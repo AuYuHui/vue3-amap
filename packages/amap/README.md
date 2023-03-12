@@ -40,11 +40,20 @@ async function setupApp() {
 setupApp()
 ```
 
-## 组件
+# 组件
+
+### 地图组件
 
 ```vue
 <el-amap :zoom="zoom" :center="center"></el-amap>
 ```
+
+### 点标记
+
+```vue
+<el-marker v-for="marker in markers" :key="marker.id" :label="marker.label" :position="marker.position"  />
+```
+
 
 
 ## hooks 方法
@@ -63,24 +72,21 @@ setupApp()
 <script lang="ts">
 import { defineComponent, nextTick } from 'vue'
 
-import { ElAmap_KEY, useParent } from '@dabu/vue3-amap'
+import { useParent } from '@dabu/vue3-amap'
 export default defineComponent({
   name: 'CustomAmap',
   setup() {
-    const { parent } = useParent(ElAmap_KEY)
+    const { parent } = useParent()
     if (!parent)
       return
-    nextTick(() => {
-      const map = parent.getInstance()
-      const marker = new AMap.Marker({
-        position: map?.getCenter(),
-      })
-      map?.add(marker)
+    const map = parent.getInstance()
+    const marker = new AMap.Marker({
+      position: map?.getCenter(),
     })
+    map?.add(marker)
     return {}
   },
 })
 </script>
-
 ```
 
