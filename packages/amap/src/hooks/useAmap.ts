@@ -1,5 +1,6 @@
 import { load } from '@amap/amap-jsapi-loader'
 import type { LoaderOptions } from '@/types/amap'
+const inBrowser = typeof window !== 'undefined'
 export function useAmap() {
   let initAmap: typeof AMap | null = null
   /**
@@ -10,14 +11,16 @@ export function useAmap() {
   async function initAMapApiLoader(config: LoaderOptions): Promise<typeof AMap | null> {
     try {
       const Amap = await load(config)
-      if (config.securityJsCode) {
-        window._AMapSecurityConfig = {
-          securityJsCode: config.securityJsCode,
+      if (inBrowser) {
+        if (config.securityJsCode) {
+          window._AMapSecurityConfig = {
+            securityJsCode: config.securityJsCode,
+          }
         }
-      }
-      if (config.serviceHost) {
-        window._AMapSecurityConfig = {
-          serviceHost: config.serviceHost,
+        if (config.serviceHost) {
+          window._AMapSecurityConfig = {
+            serviceHost: config.serviceHost,
+          }
         }
       }
       initAmap = Amap
