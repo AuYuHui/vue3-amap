@@ -1,8 +1,10 @@
 import type { PropType } from 'vue'
 import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import style from './amap.module.css'
+import type { ElAmapExpose } from './types'
 import { initProps } from '@/utils'
 import { ElAmap_KEY, useChildren } from '@/hooks'
+import { useExpose } from '@/hooks/useExpose'
 
 export default defineComponent<Partial<AMap.MapOptions>>({
   name: 'ElAmap',
@@ -117,7 +119,7 @@ export default defineComponent<Partial<AMap.MapOptions>>({
     }, // 额外配置的WebGL参数 eg: preserveDrawingBuffer
   }),
   emits: ['update:zoom', 'update:center', 'update:pitch', 'update:rotation'],
-  setup(props, { slots, expose, emit }) {
+  setup(props, { slots, emit }) {
     const { linkChildren } = useChildren(ElAmap_KEY)
     const domRef = ref<HTMLDivElement>()
     let _Map: AMap.Map | null = null
@@ -138,8 +140,7 @@ export default defineComponent<Partial<AMap.MapOptions>>({
     function getInstance(): AMap.Map | null {
       return _Map
     }
-    // 导出方法
-    expose({
+    useExpose<ElAmapExpose>({
       destroy,
       getInstance,
     })
@@ -182,10 +183,10 @@ export default defineComponent<Partial<AMap.MapOptions>>({
       getInstance,
     })
     return () => (
-        <div class={style['el-amap-container']}>
-            <div ref={domRef} class={style['el-amap']}></div>
-            { slots.default?.()}
-        </div>
+      <div class={style['el-amap-container']}>
+        <div ref={domRef} class={style['el-amap']}></div>
+        {slots.default?.()}
+      </div>
     )
   },
 })

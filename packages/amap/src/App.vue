@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ElAmap from './components/amap/amap'
+import { ElAmap } from './components/amap'
+import type { ElAmapExpose } from './components/amap'
 import type { MarkerOptions } from './components/overlay/marker'
 import ElMarker from './components/overlay/marker/marker'
 
@@ -37,7 +38,7 @@ const markers = ref<Array<MarkerOptions>>([
     },
     icon: markerIcon,
     anchor: 'bottom-center',
-    id: 2,
+    id: 3,
   },
   {
     position: [114.246446, 22.542768],
@@ -48,17 +49,29 @@ const markers = ref<Array<MarkerOptions>>([
     },
     icon: markerIcon,
     anchor: 'bottom-center',
-    id: 2,
+    id: 4,
   },
 ])
-
+function handleClick(e: any) {
+  // eslint-disable-next-line no-console
+  console.log(e)
+}
 const zoom = ref(10)
-const AmapRef = ref<InstanceType<typeof ElAmap> | null>(null)
+const AmapRef = ref <ElAmapExpose | null>(null)
+AmapRef.value?.destroy()
 </script>
 
 <template>
   <ElAmap ref="AmapRef" v-model:zoom="zoom">
-    <ElMarker v-for="marker in markers" :key="marker.id" :label="marker.label" :position="marker.position" :icon="marker.icon" />
+    <ElMarker
+      v-for="marker in markers"
+      :key="marker.id" :label="marker.label" :position="marker.position"
+      :icon="marker.icon"
+      @mousemove="handleClick"
+      @moving="handleClick"
+      @dragend="handleClick"
+      @dblclick="handleClick"
+    />
   </ElAmap>
 </template>
 

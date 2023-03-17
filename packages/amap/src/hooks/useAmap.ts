@@ -9,6 +9,8 @@ export function useAmap() {
   * @returns
   */
   async function initAMapApiLoader(config: LoaderOptions): Promise<typeof AMap | null> {
+    if (initAmap)
+      return initAmap
     try {
       const Amap = await load(config)
       if (inBrowser) {
