@@ -65,12 +65,10 @@ AmapRef.value?.destroy()
   <ElAmap ref="AmapRef" v-model:zoom="zoom">
     <ElMarker
       v-for="marker in markers"
-      :key="marker.id" :label="marker.label" :position="marker.position"
+      :key="marker.id"
+      anchor="bottom-center" :label="marker.label" :position="marker.position"
       :icon="marker.icon"
-      @mousemove="handleClick"
-      @moving="handleClick"
-      @dragend="handleClick"
-      @dblclick="handleClick"
+      @click="handleClick"
     />
   </ElAmap>
 </template>

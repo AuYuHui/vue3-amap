@@ -1,25 +1,21 @@
-import type { PropType } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 import { defineComponent, nextTick } from 'vue'
+import type { anchorType } from './types'
 import { useParent } from '@/hooks'
+import { makeStringProp } from '@/utils/props'
+
+export const markerProps = {
+  visible: Boolean,
+  position: Array as unknown as PropType<AMap.Vector2 | AMap.LngLat>,
+  anchor: makeStringProp<anchorType>('top-left'),
+  onClick: Function,
+  onDblclick: Function,
+}
+export type MarkerProps = ExtractPropTypes<typeof markerProps>
 export default defineComponent({
   name: 'ElMarker',
-  props: ({
-    visible: {
-      type: Boolean,
-      default: true,
-    },
-    position: {
-      type: Array as unknown as PropType<AMap.Vector2 | AMap.LngLat>,
-    },
-    onClick: {
-      type: Function,
-    },
-    onDblclick: {
-      type: Function,
-    },
-  }),
-  emits: ['click', 'dblclick', 'dblclick', 'mousemove',
-    'mouseover', 'mouseout', 'mousedown', 'mouseup', 'dragstart', 'dragstart', 'dragend', 'moving', 'moveend', 'movealong', 'touchstart', 'touchmove', 'touchend'],
+  props: markerProps,
+
   setup(props, { emit }) {
     const { parent } = useParent()
     if (!parent)
