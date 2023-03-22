@@ -3,7 +3,7 @@ import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import style from './amap.module.css'
 import type { ElAmapExpose } from './types'
 import { initProps } from '@/utils'
-import { ElAmap_KEY, useChildren } from '@/hooks'
+import { useChildren } from '@/hooks'
 import { useExpose } from '@/hooks/useExpose'
 
 export default defineComponent<Partial<AMap.MapOptions>>({
@@ -120,7 +120,7 @@ export default defineComponent<Partial<AMap.MapOptions>>({
   }),
   emits: ['update:zoom', 'update:center', 'update:pitch', 'update:rotation'],
   setup(props, { slots, emit }) {
-    const { linkChildren } = useChildren(ElAmap_KEY)
+    const { linkChildren } = useChildren()
     const domRef = ref<HTMLDivElement>()
     let _Map: AMap.Map | null = null
     function init() {

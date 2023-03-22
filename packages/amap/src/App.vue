@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { ElAmap } from './components/amap'
 import type { ElAmapExpose } from './components/amap'
-import type { MarkerOptions } from './components/overlay/marker'
+import type { MarkerProps } from './components/overlay/marker'
 import ElMarker from './components/overlay/marker/marker'
 
 const markerIcon = new AMap.Icon({
@@ -10,7 +10,7 @@ const markerIcon = new AMap.Icon({
   image: 'https://a.amap.com/jsapi_demos/static/demo-center/marker/icon.png',
   imageSize: new AMap.Size(46, 28),
 })
-const markers = ref<Array<MarkerOptions>>([
+const markers = ref<Array<MarkerProps>>([
   {
     position: [114.021888, 22.576431],
     label: {
@@ -36,6 +36,7 @@ const markers = ref<Array<MarkerOptions>>([
       direction: 'bottom',
       content: '<div class=\'labelContent\'>anchor:bottom-center</div>',
     },
+    cursor: 'wait',
     icon: markerIcon,
     anchor: 'bottom-center',
     id: 3,
@@ -66,8 +67,10 @@ AmapRef.value?.destroy()
     <ElMarker
       v-for="marker in markers"
       :key="marker.id"
-      anchor="bottom-center" :label="marker.label" :position="marker.position"
+      :label="marker.label"
+      :position="marker.position"
       :icon="marker.icon"
+      :anchor="marker.anchor"
       @click="handleClick"
     />
   </ElAmap>

@@ -11,6 +11,8 @@ import {
   provide,
   reactive,
 } from 'vue'
+import { ElAmap_KEY } from './useParent'
+import type { AmapProvide } from '@/components/amap/types'
 export function flattenVNodes(children: VNodeNormalizedChildren) {
   const result: VNode[] = []
 
@@ -59,8 +61,8 @@ export function sortChildren(
 }
 
 export function useChildren<
-  Child extends ComponentPublicInstance = ComponentPublicInstance<{}, any>, ProvideValue = never,
->(key: InjectionKey<ProvideValue>) {
+  Child extends ComponentPublicInstance = ComponentPublicInstance<{}, any>, ProvideValue = AmapProvide,
+>(key: InjectionKey<ProvideValue> = ElAmap_KEY) {
   const publicChildren: Child[] = reactive([])
   const internalChildren: ComponentInternalInstance[] = reactive([])
   const parent = getCurrentInstance()!
