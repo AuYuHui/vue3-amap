@@ -1,7 +1,11 @@
 import type { PropType } from 'vue'
 import type { anchorType, cursorType } from './types'
 import { makeStringProp } from '@/utils/props'
-
+export interface LabelOptions {
+  content: string
+  offset: [number, number]
+  direction: 'top' | 'right' | 'bottom' | 'left' | 'center'
+}
 export default {
   /** 点标记是否可见，默认值：true */
   visible: {
@@ -22,7 +26,7 @@ export default {
   },
   /** 添加文本标注 */
   label: {
-    type: Object as unknown as PropType<AMap.MarkerOptions['label']>,
+    type: Object as unknown as PropType<LabelOptions>,
   },
   /** 点标记是否可点击，默认值: true */
   clickable: {
