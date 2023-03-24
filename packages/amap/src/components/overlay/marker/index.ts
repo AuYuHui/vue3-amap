@@ -1,6 +1,11 @@
 import _ElMarker from './marker'
 import { withInstall } from '@/utils'
 export * from './types'
-export type { MarkerProps } from './marker'
+export type { ElMarkerProps } from './marker'
 export const ElMarker = withInstall(_ElMarker, 'el-marker')
-export default ElMarker
+
+declare module 'vue' {
+  export interface GlobalComponents {
+    ElMarker: typeof ElMarker
+  }
+}

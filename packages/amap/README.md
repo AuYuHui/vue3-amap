@@ -1,10 +1,11 @@
 <h1 align="center">@dabu/vue3-amap</h1>
 
 ## 文档
+
     @dabu/vue3-amap  基于高德地图2.0 API 封装设计的 Vue3 组件/hooks 库，开箱即用。
+  [文档地址](https://vue3-amap-docs.netlify.app/) https://vue3-amap-docs.netlify.app
 
 如果您觉得还不错，点亮 🌟star🌟 是支持更新的最大动力 ✌🏻
-
 
 
 ##  安装
@@ -40,53 +41,4 @@ async function setupApp() {
 setupApp()
 ```
 
-# 组件
-
-### 地图组件
-
-```vue
-<el-amap :zoom="zoom" :center="center"></el-amap>
-```
-
-### 点标记
-
-```vue
-<el-marker v-for="marker in markers" :key="marker.id" :label="marker.label" :position="marker.position"  />
-```
-
-
-
-## hooks 方法
-
-| 方法名称          | 描述                                                  |
-| ----------------- | ----------------------------------------------------- |
-| initAMapApiLoader | 初始化方法                                            |
-| getInstance       | 返回实例对象                                          |
-| useParent         | 在子组件中使用 `useParent` 获取父组件提供的数据和方法 |
-
-## 自定义组件
-
-示例代码，可以在   [仓库地址](https://github.com/AuYuHui/vue3-amap) 上看我写的 demo 
-
-```vue
-<script lang="ts">
-import { defineComponent, nextTick } from 'vue'
-
-import { useParent } from '@dabu/vue3-amap'
-export default defineComponent({
-  name: 'CustomAmap',
-  setup() {
-    const { parent } = useParent()
-    if (!parent)
-      return
-    const map = parent.getInstance()
-    const marker = new AMap.Marker({
-      position: map?.getCenter(),
-    })
-    map?.add(marker)
-    return {}
-  },
-})
-</script>
-```
 

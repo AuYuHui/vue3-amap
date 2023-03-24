@@ -1,10 +1,11 @@
 <h1 align="center">@dabu/vue3-amap</h1>
 
 ## 文档
+
     @dabu/vue3-amap  基于高德地图2.0 API 封装设计的 Vue3 组件/hooks 库，开箱即用。
+  [文档地址](https://vue3-amap-docs.netlify.app/) https://vue3-amap-docs.netlify.app
 
 如果您觉得还不错，点亮 🌟star🌟 是支持更新的最大动力 ✌🏻
-
 
 
 ##  安装
@@ -40,18 +41,4 @@ async function setupApp() {
 setupApp()
 ```
 
-## 组件
-
-```vue
-<el-amap :zoom="zoom" :center="center"></el-amap>
-```
-
-
-## hooks 方法
-
-| 方法名称          | 描述         |
-| ----------------- | ------------ |
-| initAMapApiLoader | 初始化方法   |
-| getInstance       | 返回实例对象 |
-|                   |              |
 
