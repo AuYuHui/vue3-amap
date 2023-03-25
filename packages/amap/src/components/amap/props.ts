@@ -123,7 +123,7 @@ export default {
   wallColor: {
     type: [String, Number] as unknown as PropType<string | number[]>,
   },
-  /** 地图楼块的侧面颜色 */
+  /** 地图楼块的顶面颜色 */
   roofColor: {
     type: [String, Number] as unknown as PropType<string | number[]>,
   },
