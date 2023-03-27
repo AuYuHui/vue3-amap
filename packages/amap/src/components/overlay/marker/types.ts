@@ -1,3 +1,8 @@
+export interface ElMarkerExpose {
+  /** 获取 Marker实例 */
+  getInstance: () => AMap.Marker | null
+}
+
 export type anchorType = 'top-left' | 'top-center' | 'top-right' | 'middle-left' | 'center' | 'middle-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
 
 // 鼠标悬浮时的光标样式

@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
+import { defineComponent, effectScope, onBeforeUnmount, onMounted, onScopeDispose, ref, watch } from 'vue'
 import style from './amap.module.css'
 import type { ElAmapExpose } from './types'
 import props from './props'
@@ -66,33 +66,61 @@ export default defineComponent({
     function bindModelEvents() {
       _Map?.on('zoomchange', () => {
         emit('update:zoom', _Map?.getZoom())
+        emit('update:center', _Map?.getRotation())
       })
       _Map?.on('dragging', () => {
         emit('update:center', getCenter())
-        emit('update:pitch', _Map?.getPitch())
       })
 
       _Map?.on('rotatechange', () => {
-        emit('update:center', _Map?.getRotation())
         emit('update:pitch', _Map?.getPitch())
       })
       _Map?.on('touchmove', () => {
         emit('update:center', getCenter())
       })
     }
+    const scope = effectScope()
+
+    scope.run(() => {
+      /**
+       * 监听 zoom，改变地图缩放级别
+       */
+      watch(() => props.zoom, (val) => {
+        _Map?.setZoom(val)
+      })
+
+      /**
+       * 监听 pitch，设置地图俯仰角
+       */
+      watch(() => props.pitch, (val) => {
+        _Map?.setPitch(val)
+      })
+      /**
+       * 监听 rotation，设置地图顺时针旋转角度, 旋转原点为地图容器中心点, 取值范围: 任意数字
+       */
+      watch(() => props.rotation, (val) => {
+        _Map?.setRotation(val)
+      })
+    })
 
     function getCenter() {
       const center = _Map?.getCenter()
       return [center?.lng, center?.lat]
     }
+    // 渲染插槽
     function renderSlot() {
       return slots.default?.()
     }
+
     linkChildren({
       getInstance,
     })
+
+    onScopeDispose(() => {
+      scope.stop()
+    })
     return () => (
-      <div class={style['el-amap-container']}>
+      <div class={style['el-amap-container']} >
         <div ref={domRef} class={style['el-amap']}></div>
         { isComplete.value && renderSlot()}
       </div>

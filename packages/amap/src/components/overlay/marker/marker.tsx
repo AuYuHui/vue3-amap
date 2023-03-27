@@ -2,7 +2,8 @@ import type { ExtractPropTypes } from 'vue'
 import { defineComponent } from 'vue'
 import props from './props'
 import { useParent } from '@/hooks'
-
+import { useExpose } from '@/hooks/useExpose'
+import { ElMarkerExpose } from './types'
 export type ElMarkerProps = Partial<ExtractPropTypes<typeof props>> & Record<string, any>
 export default defineComponent({
   name: 'ElMarker',
@@ -24,6 +25,13 @@ export default defineComponent({
     })
     map?.add(marker)
 
+    function getInstance() {
+      return marker
+    }
+
+    useExpose<ElMarkerExpose>({
+      getInstance
+    })
     return () => (<div></div>)
   },
 })

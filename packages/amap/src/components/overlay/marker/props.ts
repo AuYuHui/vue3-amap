@@ -18,7 +18,7 @@ export default {
   },
   /** 在点标记中显示的图标。可以传一个图标地址，也可以传Icon对象。有合法的content内容设置时，此属性无效。 */
   icon: {
-    type: Object as unknown as PropType<AMap.Icon | string>,
+    type: [Object, String] as unknown as PropType<AMap.Icon | string>,
   },
   /** 鼠标滑过点标记时的文字提示。不设置则鼠标滑过点标无文字提示。 */
   title: {
@@ -102,7 +102,7 @@ export default {
   onMouseup: Function,
   /** 开始拖拽点标记时触发事件 */
   onDragstart: Function,
-  /** 开始拖拽点标记时触发事件 */
+  /** 鼠标拖拽移动点标记时触发事件 */
   onDragging: Function,
   /** 点标记拖拽移动结束触发事件 */
   onDragend: Function,

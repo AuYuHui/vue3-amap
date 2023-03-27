@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import { useAmap } from './hooks'
 import './style/index.css'
 import App from './App.vue'
-
+import 'uno.css'
 // 引入组件库全局样式资源
 const { initAMapApiLoader } = useAmap()
 async function setup() {

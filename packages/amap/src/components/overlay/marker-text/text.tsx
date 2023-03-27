@@ -1,8 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { defineComponent } from 'vue'
+import { defineComponent, watch } from 'vue'
 import props from './props'
 import { useParent } from '@/hooks'
-
+import { useExpose } from '@/hooks/useExpose'
 export type ElMarkerTextProps = Partial<ExtractPropTypes<typeof props>> & Record<string, any>
 export default defineComponent({
   name: 'ElMarkerText',
@@ -24,6 +24,24 @@ export default defineComponent({
       }
     })
     text.setMap(map)
+
+    /**
+     *
+     * @returns 返回 ElMarkerText 实例
+     */
+    function getInstance() {
+      return text
+    }
+
+    useExpose({
+      getInstance,
+    })
+    /**
+     * 监听 text文本，改变内容
+     */
+    watch(() => props.text, (val) => {
+      text.setText(val)
+    })
 
     return () => (<div></div>)
   },

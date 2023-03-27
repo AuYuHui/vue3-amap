@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { NInputNumber } from "naive-ui"
 import { ElAmap } from './components/amap'
 import { ElMarkerText } from './components/overlay/marker-text'
 import type { ElAmapExpose } from './components/amap'
@@ -54,7 +55,7 @@ const markers = ref<Array<ElMarkerProps>>([
     id: 4,
   },
 ])
-
+const textValue = ref('1233')
 const texts = ref<Array<ElMarkerTextProps>>([
   {
     text: '纯文本标记',
@@ -79,39 +80,34 @@ const texts = ref<Array<ElMarkerTextProps>>([
 ])
 function handleClick(e: any) {
   // eslint-disable-next-line no-console
-  console.log(e)
+  // console.log(e)
+  AmapRef.value?.destroy()
 }
 const zoom = ref(10)
-const AmapRef = ref <ElAmapExpose | null>(null)
-AmapRef.value?.destroy()
+const AmapRef = ref<ElAmapExpose | null>(null)
+
 </script>
 
 <template>
-  <ElAmap ref="AmapRef" v-model:zoom="zoom" @click="handleClick">
-    <!-- <ElMarker
-      v-for="marker in markers"
-      :key="marker.id"
-      :label="marker.label"
-      :position="marker.position"
-      :icon="marker.icon"
-      :anchor="marker.anchor"
-      @click="handleClick"
-    /> -->
-    <ElMarkerText
-      v-for="text in texts"
-      :key="text.anchor"
-      :text="text.text"
-      :anchor="text.anchor"
-      :draggable="text.draggable"
-      :cursor="text.cursor"
-      :angle="text.angle"
-      :position="text.position"
-      :style="text.style"
-      @click="handleClick"
-    />
-  </ElAmap>
+  <div class="flex flex-col items-center justify-center h-full">
+    <NInputNumber  v-model:value="zoom" />
+    <div class="w-800px h-500px">
+      <ElAmap ref="AmapRef" v-model:rotation="zoom" view-mode="3D" @click="handleClick">
+        <!-- <ElMarker
+        v-for="marker in markers"
+        :key="marker.id"
+        :label="marker.label"
+        :position="marker.position"
+        :icon="marker.icon"
+        :anchor="marker.anchor"
+        @click="handleClick"
+      /> -->
+        <ElMarkerText v-for="text in texts" :key="text.anchor" :text="textValue" :anchor="text.anchor"
+          :draggable="text.draggable" :cursor="text.cursor" :angle="text.angle" :position="text.position"
+          :style="text.style" />
+      </ElAmap>
+    </div>
+  </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

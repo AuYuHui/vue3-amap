@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import Unocss from 'unocss/vite'
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
@@ -22,6 +23,7 @@ export default defineConfig({
         'src/components/amap/amap.module.css.d.ts',
       ],
     }),
+    Unocss()
   ],
   server: {
     open: true,
