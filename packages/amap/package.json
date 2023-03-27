@@ -1,7 +1,7 @@
 {
   "name": "@dabu/vue3-amap",
-  "version": "0.0.13",
-  "description": "高德地图 vue3 amap vue amap",
+  "version": "0.0.14",
+  "description": "高德地图 高德地图vue3组件库 高德地图vue组件库 vue3-amap vue-amap",
   "author": "AuYuHui <2419068625@qq.com> (https://github.com/AuYuHui)",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -18,9 +18,11 @@
   },
   "keywords": [
     "高德地图",
+    "高德地图vue组件库",
+    "高德地图vue3组件库",
     "vue3-amap",
     "vue3-map",
-    "vue amap",
+    "vue-amap",
     "vue3 amap"
   ],
   "dependencies": {
