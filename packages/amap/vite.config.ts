@@ -27,6 +27,7 @@ export default defineConfig({
   ],
   server: {
     open: true,
+    port: 8788
   },
   optimizeDeps: {
     exclude: ['vue'],

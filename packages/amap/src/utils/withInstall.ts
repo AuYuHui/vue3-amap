@@ -1,25 +1,12 @@
 import type { App, Component } from 'vue'
 
-// https://github.com/vant-ui/vant/issues/8302
-interface EventShim {
-  new (...args: any[]): {
-    $props: {
-      onClick?: (...args: any[]) => void
-    }
-  }
-}
-export type WithInstall<T> = T & {
-  install(app: App): void
-} & EventShim
-export type CustomComponent = Component & { displayName?: string }
-export const withInstall = <T extends CustomComponent>(component: T, alias?: string) => {
+
+export const withInstall = <T extends Component>(component: T, alias?: string) => {
   (component as Record<string, unknown>).install = (app: App) => {
-    const compName = component.name || component.displayName
+    const compName = alias || component.name
     if (!compName)
       return
     app.component(compName, component)
-    if (alias)
-      app.config.globalProperties[alias] = component
   }
-  return component as WithInstall<T>
+  return component
 }

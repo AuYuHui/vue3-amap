@@ -11,7 +11,7 @@ export type ElAmapProps = Partial<ExtractPropTypes<typeof props>> & Record<strin
 export default defineComponent({
   name: 'ElAmap',
   props: { ...props },
-  emits: ['update:zoom', 'update:center', 'update:pitch', 'update:rotation'],
+  emits: ['update:zoom', 'update:center', 'update:rotation'],
   setup(props, { slots, emit }) {
     const { linkChildren } = useChildren()
     const domRef = ref<HTMLDivElement>()
@@ -66,14 +66,14 @@ export default defineComponent({
     function bindModelEvents() {
       _Map?.on('zoomchange', () => {
         emit('update:zoom', _Map?.getZoom())
-        emit('update:center', _Map?.getRotation())
+        emit('update:center', getCenter())
       })
       _Map?.on('dragging', () => {
         emit('update:center', getCenter())
       })
 
       _Map?.on('rotatechange', () => {
-        emit('update:pitch', _Map?.getPitch())
+        emit('update:rotation', _Map?.getRotation())
       })
       _Map?.on('touchmove', () => {
         emit('update:center', getCenter())

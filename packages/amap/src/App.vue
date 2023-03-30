@@ -102,9 +102,7 @@ const AmapRef = ref<ElAmapExpose | null>(null)
         :anchor="marker.anchor"
         @click="handleClick"
       /> -->
-        <ElMarkerText v-for="text in texts" :key="text.anchor" :text="textValue" :anchor="text.anchor"
-          :draggable="text.draggable" :cursor="text.cursor" :angle="text.angle" :position="text.position"
-          :style="text.style" />
+        <ElMarkerText v-for="text in texts" :key="text.anchor" v-bind="text" />
       </ElAmap>
     </div>
   </div>
