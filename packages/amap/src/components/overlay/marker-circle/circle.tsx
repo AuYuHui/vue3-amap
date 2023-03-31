@@ -1,37 +1,45 @@
 import type { ExtractPropTypes } from 'vue'
 import { defineComponent } from 'vue'
 import props from './props'
-import type { ElMarkerExpose } from './types'
 import { useParent } from '@/hooks'
 import { useExpose } from '@/hooks/useExpose'
-export type ElMarkerProps = Partial<ExtractPropTypes<typeof props>> & Record<string, any>
+export type ElMarkerCircleProps = Partial<ExtractPropTypes<typeof props>> & Record<string, any>
 export default defineComponent({
-  name: 'ElMarker',
+  name: 'ElMarkerCircle',
   props: { ...props },
 
-  setup(props, { emit, slots }) {
+  setup(props, { emit }) {
     const { parent } = useParent()
     if (!parent)
       return
     const map = parent.getInstance()
-    const marker = new AMap.Marker({ ...props })
+    const circle = new AMap.CircleMarker({ ...props })
+    // 绑定事件
     Object.keys(props).forEach((key) => {
       if (key.startsWith('on') && { ...props }[key]) {
         const newKey = key.replace(/^on/, '').replace(/([A-Z])/g, (match, p1) => `${p1.toLowerCase()}`)
-        marker.on(newKey as AMap.EventType, (e: AMap.Marker) => {
+        circle.on(newKey as AMap.EventType, (e: AMap.CircleMarker) => {
           emit(newKey, e)
         })
       }
     })
-    map?.add(marker)
+    circle.setMap(map)
 
+    /**
+     *
+     * @returns 返回 ElMarkerCircle 实例
+     */
     function getInstance() {
-      return marker
+      return circle
     }
 
-    useExpose<ElMarkerExpose>({
+    useExpose({
       getInstance,
     })
-    return () => (<div>{slots.default?.()}</div>)
+    /**
+     * 监听 text文本，改变内容
+     */
+
+    return () => (<div></div>)
   },
 })
