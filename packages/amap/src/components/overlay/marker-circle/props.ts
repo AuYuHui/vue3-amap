@@ -5,7 +5,7 @@ import { makeStringProp } from '@/utils/props'
 export default {
   /** 圆心位置 */
   center: {
-    type: Array as unknown as PropType<AMap.LngLat>,
+    type: Array as unknown as PropType<AMap.LngLat | [number, number]>,
   },
   /** 多边形覆盖物的叠加顺序。地图上存在多个多边形覆盖物叠加时，通过该属性使级别较高的多边形覆盖物在上层显示 默认zIndex:10 */
   zIndex: {
@@ -47,8 +47,38 @@ export default {
     type: Number,
     default: 0.9,
   },
+  draggable: {
+    type: Boolean,
+    default: false,
+  },
   /** 用户自定义属性，支持JavaScript API任意数据类型，如Circle的id等 */
   extData: {
     type: Object as unknown as PropType<any>,
   },
+  /** 鼠标左键单击事件 */
+  onClick: Function,
+  /** 鼠标左键双击事件 */
+  onDblclick: Function,
+  /** 鼠标右键单击事件 */
+  onRightclick: Function,
+  /** 隐藏 */
+  onHide: Function,
+  /** 显示 */
+  onShow: Function,
+  /** 鼠标移近点标记时触发事件 */
+  onMouseover: Function,
+  /** 鼠标移出点标记时触发事件 */
+  onMouseout: Function,
+  /** 鼠标在点标记上按下时触发事件 */
+  onMousedown: Function,
+  /** 鼠标在点标记上按下后抬起时触发事件 */
+  onMouseup: Function,
+  /** 属性发生变化时 */
+  onChange: Function,
+  /** 触摸开始时触发事件，仅适用移动设备 */
+  onTouchstart: Function,
+  /** 触摸移动进行中时触发事件，仅适用移动设备 */
+  onTouchmove: Function,
+  /** 触摸结束时触发事件，仅适用移动设备 */
+  onTouchend: Function,
 }
