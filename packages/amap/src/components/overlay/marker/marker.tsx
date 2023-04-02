@@ -8,8 +8,7 @@ export type ElMarkerProps = Partial<ExtractPropTypes<typeof props>> & Record<str
 export default defineComponent({
   name: 'ElMarker',
   props: { ...props },
-
-  setup(props, { emit, slots }) {
+  setup(props, { emit }) {
     const { parent } = useParent()
     if (!parent)
       return
@@ -32,6 +31,6 @@ export default defineComponent({
     useExpose<ElMarkerExpose>({
       getInstance,
     })
-    return () => (<div>{slots.default?.()}</div>)
+    return () => ''
   },
 })
