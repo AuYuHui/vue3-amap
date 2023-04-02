@@ -5,9 +5,9 @@ export interface ElInfoWindowExpose {
   /** 获取 ElInfoWindow 实例 */
   getInstance: () => AMap.InfoWindow | null
 }
-export const ElElInfoWindow = withInstall(_ElInfoWindow, 'el-info-window')
+export const ElInfoWindow = withInstall(_ElInfoWindow, 'el-info-window')
 declare module 'vue' {
   export interface GlobalComponents {
-    ElElInfoWindow: typeof ElElInfoWindow
+    ElInfoWindow: typeof ElInfoWindow
   }
 }

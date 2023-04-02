@@ -41,4 +41,17 @@ async function setupApp() {
 setupApp()
 ```
 
+## 示例
+<p align="center">
+  <img alt="vue3 amap" width="100%" src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/76a681dec03d4e64b257efba5325d5cc~tplv-k3u1fbpfcp-watermark.image?">
+</p>
+<p align="center">
+  <img alt="vue3 amap" width="100%" src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5a101ba49f5a417c94eea8f1fa7dfc2f~tplv-k3u1fbpfcp-watermark.image?">
+</p>
+<p align="center">
+  <img alt="vue3 amap" width="100%" src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a5fc109b15c249ddafc13f489a7e3de2~tplv-k3u1fbpfcp-watermark.image?">
+</p>
+<p align="center">
+  <img alt="vue3 amap" width="100%" src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/55991f63841f47d383b36163a04d44b9~tplv-k3u1fbpfcp-watermark.image?">
+</p>
 
