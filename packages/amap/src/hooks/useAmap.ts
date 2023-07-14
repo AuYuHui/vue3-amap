@@ -1,5 +1,4 @@
 import { load } from '@amap/amap-jsapi-loader'
-import type { LoaderOptions } from '@/types/amap'
 const inBrowser = typeof window !== 'undefined'
 let initAmap: typeof AMap | null = null
 export function useAmap() {

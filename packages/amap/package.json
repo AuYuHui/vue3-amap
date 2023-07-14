@@ -1,6 +1,6 @@
 {
   "name": "@dabu/vue3-amap",
-  "version": "0.0.16-beta.0",
+  "version": "0.0.19",
   "description": "高德地图 高德地图vue3组件库 高德地图vue组件库 vue3-amap vue-amap",
   "author": "AuYuHui <2419068625@qq.com> (https://github.com/AuYuHui)",
   "main": "dist/index.js",
@@ -25,24 +25,21 @@
     "vue-amap",
     "vue3 amap"
   ],
-  "dependencies": {
-    "vue": "^3.2.45"
+  "peerDependencies": {
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@amap/amap-jsapi-types": "^0.0.13",
-    "@types/node": "^18.14.0",
-    "@vitejs/plugin-vue": "^4.0.0",
-    "@vitejs/plugin-vue-jsx": "^3.0.0",
-    "eslint": "^8.34.0",
-    "eslint-plugin-vue": "^9.9.0",
-    "naive-ui": "^2.34.3",
-    "typed-css-modules": "^0.7.2",
-    "typescript": "^4.9.3",
-    "unocss": "^0.50.6",
-    "unplugin-vue-define-options": "^1.2.2",
-    "vite": "^4.1.0",
-    "vite-plugin-dts": "2.0.0-beta.1",
-    "vue-tsc": "^1.0.24"
+    "@types/node": "^18.16.19",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "eslint": "^8.44.0",
+    "eslint-plugin-vue": "^9.15.1",
+    "typescript": "^4.9.5",
+    "vite": "^4.4.3",
+    "vite-plugin-dts": "^3.2.0",
+    "vue": "^3.3.4",
+    "vue-tsc": "^1.8.4"
   }
 }

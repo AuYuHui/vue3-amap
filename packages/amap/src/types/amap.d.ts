@@ -1,14 +1,14 @@
 /// <reference types="@amap/amap-jsapi-types" />
-export interface LoaderOptions {
+interface LoaderOptions {
   key: string;
   version: string;
   plugins?: string[];
   AMapUI?: {
-    version?: string;
-    plugins?: string[];
+      version?: string;
+      plugins?: string[];
   };
   Loca?: {
-    version?: string;
+      version?: string;
   };
   serviceHost?: string,
   securityJsCode?: string
@@ -25,5 +25,4 @@ declare namespace AMapLoader {
    * @param securityJsCode '您申请的安全密钥'
    */
   function load(options: LoaderOptions): Promise<void>;
-  
 }
